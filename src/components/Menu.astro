@@ -1,0 +1,224 @@
+---
+import { menu } from '../data/menu';
+
+const ORDER_URL = 'https://frituurhethalfhuis.pickandgo.be/';
+---
+
+<section class="section menu-section" id="menu">
+	<div class="container">
+		<div class="section-head center">
+			<span class="eyebrow">Onze kaart</span>
+			<h2>Wat staat er op het menu?</h2>
+			<p>
+				Van klassieke frietjes tot Bicky burgers en huisbereid stoofvlees. Prijzen zoals op
+				onze bestelwebsite &mdash; die kan af en toe lichtjes wijzigen.
+			</p>
+		</div>
+
+		<div class="tabs" role="tablist">
+			{menu.map((cat, i) => (
+				<button
+					class:list={['tab', { active: i === 0 }]}
+					role="tab"
+					data-target={cat.id}
+					aria-selected={i === 0}
+				>
+					<span>{cat.icon}</span>
+					{cat.title}
+				</button>
+			))}
+		</div>
+
+		<div class="panels">
+			{menu.map((cat, i) => (
+				<div class:list={['panel', { active: i === 0 }]} data-panel={cat.id}>
+					<ul class="items">
+						{cat.items.map((item) => (
+							<li class:list={['item', { unavailable: item.unavailable }]}>
+								<span class="name">
+									{item.name}
+									{item.unavailable && <em class="tag">tijdelijk niet beschikbaar</em>}
+								</span>
+								<span class="dots"></span>
+								<span class="price">€ {item.price}</span>
+							</li>
+						))}
+					</ul>
+				</div>
+			))}
+		</div>
+
+		<div class="menu-cta">
+			<p>Zin gekregen? Bestel vooraf online en haal je frietjes vers en warm af.</p>
+			<a class="btn btn-primary" href={ORDER_URL} target="_blank" rel="noopener">
+				🛵 Bestel &amp; haal af
+			</a>
+		</div>
+	</div>
+</section>
+
+<script>
+	const tabs = document.querySelectorAll<HTMLButtonElement>('.tab');
+	const panels = document.querySelectorAll<HTMLDivElement>('.panel');
+
+	tabs.forEach((tab) => {
+		tab.addEventListener('click', () => {
+			tabs.forEach((t) => {
+				t.classList.remove('active');
+				t.setAttribute('aria-selected', 'false');
+			});
+			panels.forEach((p) => p.classList.remove('active'));
+
+			tab.classList.add('active');
+			tab.setAttribute('aria-selected', 'true');
+			const target = tab.dataset.target;
+			document.querySelector(`[data-panel="${target}"]`)?.classList.add('active');
+		});
+	});
+</script>
+
+<style>
+	.menu-section {
+		background: var(--color-bg-alt);
+		border-top: 1px solid var(--color-border);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.section-head.center {
+		max-width: 620px;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+
+	.tabs {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 10px;
+		margin-bottom: 40px;
+	}
+
+	.tab {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 10px 18px;
+		border-radius: 999px;
+		border: 2px solid var(--color-border);
+		background: var(--color-bg);
+		font-family: 'Fredoka', system-ui, sans-serif;
+		font-weight: 600;
+		font-size: 0.95rem;
+		cursor: pointer;
+		color: var(--color-text);
+		transition: all 0.15s ease;
+	}
+
+	.tab:hover {
+		border-color: var(--color-primary);
+	}
+
+	.tab.active {
+		background: var(--color-primary);
+		border-color: var(--color-primary);
+		color: #fff;
+	}
+
+	.panel {
+		display: none;
+	}
+
+	.panel.active {
+		display: block;
+		animation: fade 0.25s ease;
+	}
+
+	@keyframes fade {
+		from {
+			opacity: 0;
+			transform: translateY(6px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.items {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 4px 40px;
+	}
+
+	.item {
+		display: flex;
+		align-items: baseline;
+		gap: 8px;
+		padding: 12px 4px;
+		border-bottom: 1px dashed var(--color-border);
+	}
+
+	.item.unavailable {
+		opacity: 0.55;
+	}
+
+	.item .name {
+		font-weight: 700;
+		white-space: nowrap;
+	}
+
+	.item .tag {
+		display: block;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 0.72rem;
+		color: var(--color-primary-dark);
+		white-space: normal;
+	}
+
+	.dots {
+		flex: 1;
+		border-bottom: 2px dotted var(--color-border);
+		height: 0;
+		margin-bottom: 4px;
+	}
+
+	.price {
+		font-weight: 800;
+		color: var(--color-primary-dark);
+		white-space: nowrap;
+	}
+
+	.menu-cta {
+		margin-top: 56px;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 20px;
+		background: var(--color-bg);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: 28px 32px;
+	}
+
+	.menu-cta p {
+		font-weight: 700;
+		font-size: 1.05rem;
+		max-width: 420px;
+	}
+
+	@media (max-width: 640px) {
+		.items {
+			grid-template-columns: 1fr;
+		}
+		.menu-cta {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+</style>

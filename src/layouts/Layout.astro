@@ -1,0 +1,172 @@
+---
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = 'Frituur Het Halfhuis | Mielen-Boven-Aalst',
+	description = 'Frituur Het Halfhuis in Mielen-Boven-Aalst: verse frietjes, snacks en Bicky burgers. Bestel online voor afhaling via Borlostraat 15.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="nl">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--color-bg: #fff8ee;
+		--color-bg-alt: #ffffff;
+		--color-primary: #e2531f;
+		--color-primary-dark: #b93f14;
+		--color-accent: #f6b93b;
+		--color-dark: #2c1c12;
+		--color-text: #3a2a1e;
+		--color-text-muted: #7a6a5c;
+		--color-border: #f0e0c9;
+		--shadow-soft: 0 10px 30px rgba(44, 28, 18, 0.08);
+		--radius-lg: 22px;
+		--radius-md: 14px;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		margin: 0;
+		background: var(--color-bg);
+		color: var(--color-text);
+		font-family: 'Nunito', system-ui, sans-serif;
+		line-height: 1.5;
+		overflow-x: hidden;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		font-family: 'Fredoka', system-ui, sans-serif;
+		color: var(--color-dark);
+		margin: 0;
+		line-height: 1.15;
+	}
+
+	p {
+		margin: 0;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	img {
+		max-width: 100%;
+		display: block;
+	}
+
+	.container {
+		width: 100%;
+		max-width: 1120px;
+		margin: 0 auto;
+		padding: 0 24px;
+	}
+
+	.section {
+		padding: 88px 0;
+	}
+
+	.eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-weight: 800;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		font-size: 0.8rem;
+		color: var(--color-primary-dark);
+		background: rgba(226, 83, 31, 0.1);
+		padding: 6px 14px;
+		border-radius: 999px;
+	}
+
+	.section-head {
+		max-width: 620px;
+		margin: 0 0 48px;
+	}
+
+	.section-head p {
+		margin-top: 14px;
+		color: var(--color-text-muted);
+		font-size: 1.05rem;
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		padding: 14px 26px;
+		border-radius: 999px;
+		font-weight: 800;
+		font-size: 1rem;
+		font-family: 'Fredoka', system-ui, sans-serif;
+		border: 2px solid transparent;
+		cursor: pointer;
+		transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+		white-space: nowrap;
+	}
+
+	.btn:hover {
+		transform: translateY(-2px);
+	}
+
+	.btn-primary {
+		background: var(--color-primary);
+		color: #fff;
+		box-shadow: 0 10px 24px rgba(226, 83, 31, 0.35);
+	}
+
+	.btn-primary:hover {
+		background: var(--color-primary-dark);
+	}
+
+	.btn-ghost {
+		background: rgba(255, 255, 255, 0.9);
+		color: var(--color-dark);
+		border-color: rgba(44, 28, 18, 0.15);
+	}
+
+	.btn-ghost:hover {
+		border-color: var(--color-dark);
+	}
+
+	@media (max-width: 720px) {
+		.section {
+			padding: 64px 0;
+		}
+	}
+</style>

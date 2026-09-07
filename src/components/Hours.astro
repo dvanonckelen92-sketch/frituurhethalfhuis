@@ -1,0 +1,172 @@
+---
+import { openingHours } from '../data/menu';
+
+const ADDRESS = 'Borlostraat 15, 3891 Mielen-Boven-Aalst, België';
+const MAPS_EMBED = `https://www.google.com/maps?q=${encodeURIComponent(ADDRESS)}&output=embed`;
+const MAPS_LINK = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
+
+const dayIndex: Record<string, number> = {
+	Zondag: 0,
+	Maandag: 1,
+	Dinsdag: 2,
+	Woensdag: 3,
+	Donderdag: 4,
+	Vrijdag: 5,
+	Zaterdag: 6,
+};
+---
+
+<section class="section" id="uren">
+	<div class="container hours-grid">
+		<div class="hours-card">
+			<span class="eyebrow">Openingsuren</span>
+			<h2>Wanneer kan je bij ons langs?</h2>
+
+			<ul class="hours-list">
+				{openingHours.map((d) => (
+					<li data-day={dayIndex[d.day]}>
+						<span class="day">{d.day}</span>
+						<span class="time">
+							{d.closed ? (
+								<span class="closed">Gesloten</span>
+							) : (
+								d.hours.map((h) => <span class="range">{h}</span>)
+							)}
+						</span>
+					</li>
+				))}
+			</ul>
+
+			<p class="note">
+				Feestdagen en uitzonderlijke sluitingsdagen kondigen we aan op onze
+				<a href="https://www.facebook.com/profile.php?id=61583588097751" target="_blank" rel="noopener">
+					Facebookpagina</a>.
+			</p>
+		</div>
+
+		<div class="map-card">
+			<iframe
+				title="Locatie Frituur Het Halfhuis"
+				src={MAPS_EMBED}
+				loading="lazy"
+				referrerpolicy="no-referrer-when-downgrade"
+			></iframe>
+			<a class="map-overlay-link" href={MAPS_LINK} target="_blank" rel="noopener">
+				📍 Borlostraat 15, Mielen-Boven-Aalst &nbsp;→
+			</a>
+		</div>
+	</div>
+</section>
+
+<script>
+	const today = new Date().getDay();
+	document.querySelectorAll('.hours-list li').forEach((li) => {
+		if (Number((li as HTMLElement).dataset.day) === today) {
+			li.classList.add('today');
+		}
+	});
+</script>
+
+<style>
+	.hours-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 56px;
+		align-items: start;
+	}
+
+	.hours-card h2 {
+		font-size: clamp(1.8rem, 3vw, 2.3rem);
+		margin: 14px 0 28px;
+	}
+
+	.hours-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		background: var(--color-bg-alt);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+	}
+
+	.hours-list li {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 16px 22px;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.hours-list li:last-child {
+		border-bottom: none;
+	}
+
+	.hours-list li.today {
+		background: rgba(246, 185, 59, 0.18);
+	}
+
+	.day {
+		font-weight: 800;
+		font-family: 'Fredoka', system-ui, sans-serif;
+	}
+
+	.time {
+		display: flex;
+		gap: 10px;
+		font-weight: 700;
+		color: var(--color-text-muted);
+	}
+
+	.today .time {
+		color: var(--color-primary-dark);
+	}
+
+	.closed {
+		color: #c14a4a;
+	}
+
+	.note {
+		margin-top: 20px;
+		font-size: 0.9rem;
+		color: var(--color-text-muted);
+	}
+
+	.note a {
+		font-weight: 700;
+		color: var(--color-primary-dark);
+	}
+
+	.map-card {
+		position: relative;
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+		box-shadow: var(--shadow-soft);
+		aspect-ratio: 4 / 3.6;
+	}
+
+	.map-card iframe {
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+
+	.map-overlay-link {
+		position: absolute;
+		left: 16px;
+		bottom: 16px;
+		background: #fff;
+		padding: 12px 18px;
+		border-radius: 999px;
+		font-weight: 800;
+		font-size: 0.9rem;
+		box-shadow: var(--shadow-soft);
+	}
+
+	@media (max-width: 860px) {
+		.hours-grid {
+			grid-template-columns: 1fr;
+			gap: 36px;
+		}
+	}
+</style>
