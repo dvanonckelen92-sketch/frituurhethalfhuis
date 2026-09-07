@@ -1,7 +1,4 @@
-// TODO: update SITE_URL once the site has its real domain (also update astro.config.mjs's
-// `site` option to match), then rebuild — canonical URLs, the sitemap, and the Open Graph
-// tags in Layout.astro all depend on this being correct.
-export const SITE_URL = 'https://www.frituurhethalfhuis.be';
+export const SITE_URL = 'https://frituurhethalfhuis.be';
 
 export const SITE_NAME = 'Frituur Het Halfhuis';
 export const ORDER_URL = 'https://frituurhethalfhuis.pickandgo.be/';
