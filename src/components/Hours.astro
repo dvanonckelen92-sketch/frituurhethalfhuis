@@ -125,6 +125,10 @@ const dayIndex: Record<string, number> = {
 		color: var(--color-text-muted);
 	}
 
+	.range {
+		white-space: nowrap;
+	}
+
 	.today .time {
 		color: var(--color-primary-dark);
 	}
@@ -174,6 +178,20 @@ const dayIndex: Record<string, number> = {
 		.hours-grid {
 			grid-template-columns: 1fr;
 			gap: 36px;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.hours-list li {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 6px;
+		}
+
+		.time {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 4px;
 		}
 	}
 </style>
