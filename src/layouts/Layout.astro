@@ -35,9 +35,9 @@ const {
 	:root {
 		--color-bg: #fff8ee;
 		--color-bg-alt: #ffffff;
-		--color-primary: #e2531f;
-		--color-primary-dark: #b93f14;
-		--color-accent: #f6b93b;
+		--color-primary: #fec200;
+		--color-primary-dark: #9c6a00;
+		--color-accent: #e2531f;
 		--color-dark: #2c1c12;
 		--color-text: #3a2a1e;
 		--color-text-muted: #7a6a5c;
@@ -108,7 +108,7 @@ const {
 		text-transform: uppercase;
 		font-size: 0.8rem;
 		color: var(--color-primary-dark);
-		background: rgba(226, 83, 31, 0.1);
+		background: rgba(254, 194, 0, 0.18);
 		padding: 6px 14px;
 		border-radius: 999px;
 	}
@@ -146,12 +146,13 @@ const {
 
 	.btn-primary {
 		background: var(--color-primary);
-		color: #fff;
-		box-shadow: 0 10px 24px rgba(226, 83, 31, 0.35);
+		color: var(--color-dark);
+		box-shadow: 0 10px 24px rgba(254, 194, 0, 0.45);
 	}
 
 	.btn-primary:hover {
 		background: var(--color-primary-dark);
+		color: #fff;
 	}
 
 	.btn-ghost {
