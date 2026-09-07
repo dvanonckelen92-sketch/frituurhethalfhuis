@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LegalPage from '../components/LegalPage.astro';
+import { EMAIL } from '../data/site';
+---
+
+<Layout
+	title="Cookiebeleid | Frituur Het Halfhuis"
+	description="Welke cookies deze website wel en niet gebruikt."
+>
+	<LegalPage heading="Cookiebeleid" updated="7 september 2026">
+		<p>
+			Deze website plaatst zelf <strong>geen</strong> cookies en gebruikt geen analytics- of
+			advertentiediensten. Lettertypes worden lokaal vanaf onze eigen server geladen, niet via
+			Google Fonts, zodat daarvoor niets naar Google wordt verstuurd.
+		</p>
+
+		<div>
+			<h2>De kaart bij "Openingsuren"</h2>
+			<p>
+				Op de pagina met onze openingsuren tonen we een ingebedde kaart van Google Maps, zodat
+				je meteen ziet waar je moet zijn. Daardoor kan Google, ook zonder dat je erop klikt,
+				cookies plaatsen en technische gegevens (zoals je IP-adres) verwerken, volgens
+				het&nbsp;<a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener"
+					>cookiebeleid van Google</a
+				>. Wil je dat liever niet, dan kan je onze locatie ook bekijken via de
+				knop&nbsp;"Bekijk op Google Maps" of gewoon op ons adres afgaan: Borlostraat 15,
+				Mielen-Boven-Aalst.
+			</p>
+		</div>
+
+		<div>
+			<h2>Onze webshop</h2>
+			<p>
+				Wanneer je via de knop "Bestel online" naar onze bestelwebsite gaat, verlaat je deze
+				site. Die webshop (Pick & Go) kan eigen cookies gebruiken volgens zijn eigen
+				cookiebeleid.
+			</p>
+		</div>
+
+		<div>
+			<h2>Vragen?</h2>
+			<p>
+				Neem gerust contact op via <a href={`mailto:${EMAIL}`}>{EMAIL}</a> als je vragen hebt
+				over dit cookiebeleid.
+			</p>
+		</div>
+	</LegalPage>
+</Layout>

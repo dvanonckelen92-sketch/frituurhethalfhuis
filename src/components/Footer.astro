@@ -2,11 +2,26 @@
 import { SITE_NAME, FULL_ADDRESS } from '../data/site';
 
 const currentYear = new Date().getFullYear();
+const legalLinks = [
+	{ href: '/wettelijke-vermeldingen', label: 'Wettelijke vermeldingen' },
+	{ href: '/privacybeleid', label: 'Privacybeleid' },
+	{ href: '/cookiebeleid', label: 'Cookiebeleid' },
+];
 ---
 
 <footer class="footer">
 	<div class="container footer-inner">
-		<p>&copy; {currentYear} {SITE_NAME} &middot; {FULL_ADDRESS}</p>
+		<div class="footer-main">
+			<p>&copy; {currentYear} {SITE_NAME} &middot; {FULL_ADDRESS}</p>
+			<nav class="legal-nav" aria-label="Wettelijke informatie">
+				{legalLinks.map((link, i) => (
+					<>
+						{i > 0 && <span aria-hidden="true"> &middot; </span>}
+						<a href={link.href}>{link.label}</a>
+					</>
+				))}
+			</nav>
+		</div>
 		<p class="credit">
 			Website door&nbsp;<a href="https://www.coopconsult.be" target="_blank" rel="noopener">Coop Consult</a>
 		</p>
@@ -24,8 +39,24 @@ const currentYear = new Date().getFullYear();
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
-		gap: 10px;
+		align-items: flex-end;
+		gap: 14px;
 		font-size: 0.88rem;
+	}
+
+	.footer-main {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.legal-nav a {
+		color: rgba(255, 255, 255, 0.6);
+		font-size: 0.82rem;
+	}
+
+	.legal-nav a:hover {
+		color: #fff;
 	}
 
 	.credit a {

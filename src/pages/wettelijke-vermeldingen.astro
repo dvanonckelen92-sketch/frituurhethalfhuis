@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LegalPage from '../components/LegalPage.astro';
+import {
+	SITE_NAME,
+	LEGAL_NAME,
+	LEGAL_FORM,
+	COMPANY_NUMBER,
+	OWNERS,
+	FULL_ADDRESS,
+	EMAIL,
+	ORDER_URL,
+} from '../data/site';
+---
+
+<Layout
+	title="Wettelijke vermeldingen | Frituur Het Halfhuis"
+	description="Wettelijke vermeldingen en bedrijfsgegevens van Frituur Het Halfhuis in Mielen-Boven-Aalst, Gingelom."
+>
+	<LegalPage heading="Wettelijke vermeldingen" updated="7 september 2026">
+		<p>
+			Deze vermeldingen worden gepubliceerd in overeenstemming met artikel XII.6 van het
+			Wetboek van Economisch Recht, dat een aantal verplichte gegevens oplegt aan elke
+			onderneming die diensten van de informatiemaatschappij aanbiedt (waaronder een website).
+		</p>
+
+		<div>
+			<h2>Uitbater</h2>
+			<ul>
+				<li><strong>Handelsnaam:</strong> {SITE_NAME}</li>
+				<li><strong>Maatschappelijke benaming:</strong> {LEGAL_NAME}</li>
+				<li><strong>Rechtsvorm:</strong> {LEGAL_FORM}</li>
+				<li><strong>Ondernemingsnummer (KBO):</strong> {COMPANY_NUMBER}</li>
+				<li><strong>Zaakvoerders:</strong> {OWNERS}</li>
+				<li><strong>Adres:</strong> {FULL_ADDRESS}, België</li>
+				<li>
+					<strong>E-mail:</strong> <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+				</li>
+			</ul>
+		</div>
+
+		<div>
+			<h2>Bestellen en afhalen</h2>
+			<p>
+				Online bestellingen verlopen via onze webshop op&nbsp;<a
+					href={ORDER_URL}
+					target="_blank"
+					rel="noopener">{ORDER_URL}</a
+				>, een dienst van een externe partner (Pick & Go). Die webshop heeft zijn eigen
+				algemene voorwaarden en verwerkt bestel- en betaalgegevens onder zijn eigen
+				verantwoordelijkheid.
+			</p>
+		</div>
+
+		<div>
+			<h2>Intellectuele eigendom</h2>
+			<p>
+				De teksten, foto's en het logo op deze website zijn eigendom van {SITE_NAME} of worden
+				met toestemming gebruikt. Overname zonder voorafgaande toestemming is niet
+				toegestaan.
+			</p>
+		</div>
+
+		<div>
+			<h2>Geschillen</h2>
+			<p>
+				Het Belgisch recht is van toepassing. Bij een geschil dat niet in der minne kan
+				worden geregeld, zijn de rechtbanken van het arrondissement waar de zetel gevestigd
+				is bevoegd.
+			</p>
+		</div>
+
+		<p>
+			Zie ook onze&nbsp;<a href="/privacybeleid">privacyverklaring</a> en&nbsp;<a
+				href="/cookiebeleid">cookieverklaring</a
+			>.
+		</p>
+	</LegalPage>
+</Layout>

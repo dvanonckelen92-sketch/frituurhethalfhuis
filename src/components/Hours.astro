@@ -1,10 +1,15 @@
 ---
 import { openingHours } from '../data/menu';
-import { FULL_ADDRESS, FACEBOOK_URL } from '../data/site';
+import { FACEBOOK_URL } from '../data/site';
 
-const MAPS_QUERY = `${FULL_ADDRESS}, België`;
-const MAPS_EMBED = `https://www.google.com/maps?q=${encodeURIComponent(MAPS_QUERY)}&output=embed`;
-const MAPS_LINK = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(MAPS_QUERY)}`;
+// Coordinates confirmed against the actual Google Maps business listing
+// ("het halfhuis", Borlostraat 15) — a plain address-text geocode landed
+// on the wrong side of the street crossing, so we pin the exact spot.
+const LAT = 50.7540518;
+const LNG = 5.2119634;
+const MAPS_EMBED = `https://www.google.com/maps?q=${LAT},${LNG}&z=17&output=embed`;
+const MAPS_LINK =
+	'https://www.google.com/maps/place/het+halfhuis/@50.7540518,5.2119634,17z/data=!3m1!4b1!4m6!3m5!1s0x47c11bea1b070ef7:0x3a9148bb678a8dfe!8m2!3d50.7540518!4d5.2119634';
 
 const dayIndex: Record<string, number> = {
 	Zondag: 0,
@@ -54,7 +59,7 @@ const dayIndex: Record<string, number> = {
 				referrerpolicy="no-referrer-when-downgrade"
 			></iframe>
 			<a class="map-overlay-link" href={MAPS_LINK} target="_blank" rel="noopener">
-				📍 Borlostraat 15, Mielen-Boven-Aalst &nbsp;→
+				📍 Bekijk op Google Maps &nbsp;→
 			</a>
 		</div>
 	</div>
@@ -105,7 +110,7 @@ const dayIndex: Record<string, number> = {
 	}
 
 	.hours-list li.today {
-		background: rgba(246, 185, 59, 0.18);
+		background: rgba(254, 194, 0, 0.18);
 	}
 
 	.day {

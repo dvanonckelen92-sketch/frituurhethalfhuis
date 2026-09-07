@@ -1,22 +1,23 @@
 ---
 import { Image } from 'astro:assets';
 import ownerPhoto from '../assets/photos/eigenares.jpg';
-import { FULL_ADDRESS } from '../data/site';
+import { FULL_ADDRESS, OWNERS } from '../data/site';
 ---
 
 <section class="section" id="over-ons">
 	<div class="container about-grid">
 		<div class="about-image">
-			<Image src={ownerPhoto} alt="De eigenares van Frituur Het Halfhuis bij de frietbakken" width={560} height={720} />
+			<Image src={ownerPhoto} alt={`Lieselotte van Frituur Het Halfhuis bij de frietbakken`} width={560} height={720} />
 		</div>
 
 		<div class="about-text">
 			<span class="eyebrow">Over ons</span>
 			<h2>Over de frituur</h2>
 			<p>
-				Frituur Het Halfhuis zit aan de Borlostraat in Mielen-Boven-Aalst, deelgemeente van
-				Gingelom. Op de kaart staan frieten, snacks, Bicky burgers en huisgemaakt stoofvlees,
-				allemaal klaargemaakt op het moment dat je bestelt.
+				Frituur Het Halfhuis wordt uitgebaat door {OWNERS}, aan de Borlostraat in
+				Mielen-Boven-Aalst, deelgemeente van Gingelom. Op de kaart staan frieten, snacks,
+				Bicky burgers en huisgemaakt stoofvlees, allemaal klaargemaakt op het moment dat je
+				bestelt.
 			</p>
 			<p>
 				Bestel op voorhand via de webshop en kies je afhaalmoment, of spring gewoon binnen om

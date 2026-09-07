@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LegalPage from '../components/LegalPage.astro';
+import { LEGAL_NAME, COMPANY_NUMBER, FULL_ADDRESS, EMAIL } from '../data/site';
+---
+
+<Layout
+	title="Privacyverklaring | Frituur Het Halfhuis"
+	description="Hoe Frituur Het Halfhuis omgaat met persoonsgegevens van bezoekers van deze website."
+>
+	<LegalPage heading="Privacyverklaring" updated="7 september 2026">
+		<p>
+			{LEGAL_NAME} (ondernemingsnummer {COMPANY_NUMBER}, {FULL_ADDRESS}) hecht belang aan je
+			privacy. Deze verklaring legt uit welke gegevens deze website verzamelt, waarom, en welke
+			rechten je hebt volgens de Algemene Verordening Gegevensbescherming (AVG/GDPR).
+		</p>
+
+		<div>
+			<h2>Wie is verantwoordelijk?</h2>
+			<p>
+				{LEGAL_NAME} is de verwerkingsverantwoordelijke voor deze website. Vragen over je
+				gegevens kan je richten aan <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
+			</p>
+		</div>
+
+		<div>
+			<h2>Welke gegevens verzamelen we?</h2>
+			<ul>
+				<li>
+					<strong>Contact per e-mail:</strong> als je ons mailt, verwerken we je e-mailadres en
+					de inhoud van je bericht, enkel om je vraag te beantwoorden.
+				</li>
+				<li>
+					<strong>Kaart op de website:</strong> op de pagina met onze openingsuren tonen we een
+					ingebedde kaart van Google Maps. Daardoor verwerkt Google technische gegevens (zoals
+					je IP-adres) volgens het&nbsp;<a
+						href="https://policies.google.com/privacy"
+						target="_blank"
+						rel="noopener">privacybeleid van Google</a
+					>. Meer daarover in ons&nbsp;<a href="/cookiebeleid">cookiebeleid</a>.
+				</li>
+				<li>
+					<strong>Technische server-gegevens:</strong> onze hostingprovider houdt, zoals
+					gebruikelijk, beperkte technische logs bij (bv. IP-adres, tijdstip van bezoek) voor
+					beveiliging en het goed functioneren van de site. Deze website zelf plaatst geen
+					trackingcookies en gebruikt geen analytics- of advertentiediensten.
+				</li>
+			</ul>
+		</div>
+
+		<div>
+			<h2>Waarom verwerken we deze gegevens?</h2>
+			<p>
+				We gebruiken je gegevens enkel om je vraag te beantwoorden, om de kaart te tonen als
+				je daarom vraagt, en om onze website veilig en werkend te houden. We verkopen of delen
+				je gegevens nooit voor commerciële doeleinden.
+			</p>
+		</div>
+
+		<div>
+			<h2>Hoelang bewaren we gegevens?</h2>
+			<p>
+				E-mails bewaren we niet langer dan nodig om je vraag af te handelen. Technische
+				server-logs worden na korte tijd automatisch verwijderd door onze hostingprovider.
+			</p>
+		</div>
+
+		<div>
+			<h2>Jouw rechten</h2>
+			<p>
+				Je hebt steeds recht op inzage, verbetering, verwijdering en bezwaar met betrekking
+				tot je persoonsgegevens. Neem daarvoor contact op via <a href={`mailto:${EMAIL}`}
+					>{EMAIL}</a
+				>. Je kan ook een klacht indienen bij de Belgische Gegevensbeschermingsautoriteit
+				via&nbsp;<a href="https://www.gegevensbeschermingsautoriteit.be" target="_blank" rel="noopener"
+					>gegevensbeschermingsautoriteit.be</a
+				>.
+			</p>
+		</div>
+
+		<div>
+			<h2>Bestellen via onze webshop</h2>
+			<p>
+				Wanneer je online bestelt via onze webshop (Pick & Go), verloopt die verwerking van
+				je bestel- en betaalgegevens via het platform van die externe partner, onder hun eigen
+				privacybeleid.
+			</p>
+		</div>
+	</LegalPage>
+</Layout>

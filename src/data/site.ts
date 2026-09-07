@@ -18,3 +18,10 @@ export const ADDRESS = {
 };
 
 export const FULL_ADDRESS = `${ADDRESS.street}, ${ADDRESS.postalCode} ${ADDRESS.locality}`;
+
+// Wettelijke/bedrijfsgegevens — verplicht te vermelden volgens het Wetboek van
+// Economisch Recht (art. XII.6) voor elke website van een onderneming.
+export const LEGAL_NAME = 'Het Halfhuis BV';
+export const LEGAL_FORM = 'BV (besloten vennootschap)';
+export const COMPANY_NUMBER = 'BE 1026.744.109';
+export const OWNERS = 'Lieselotte en Tom';
