@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+import toog from '../assets/photos/toog.jpg';
+import zitplaats from '../assets/photos/ZItplaats.jpg';
+import buiten from '../assets/photos/buiten2.jpg';
+import ingang from '../assets/photos/ingang.jpg';
+
+const photos = [
+	{ src: toog, alt: 'De snackvitrine bij Frituur Het Halfhuis', caption: 'De vitrine' },
+	{ src: zitplaats, alt: 'Zithoek binnen bij Frituur Het Halfhuis', caption: 'Binnen' },
+	{ src: buiten, alt: 'Terras bij Frituur Het Halfhuis', caption: 'Het terras' },
+	{ src: ingang, alt: 'Ingang van Frituur Het Halfhuis', caption: 'De ingang' },
+];
+---
+
+<section class="section gallery-section">
+	<div class="container">
+		<span class="eyebrow">Bij ons binnen</span>
+		<h2>Een blik in de zaak</h2>
+
+		<div class="gallery-grid">
+			{photos.map((p) => (
+				<figure>
+					<Image src={p.src} alt={p.alt} width={480} height={480} />
+					<figcaption>{p.caption}</figcaption>
+				</figure>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.gallery-section h2 {
+		font-size: clamp(1.7rem, 3vw, 2.2rem);
+		margin: 14px 0 32px;
+	}
+
+	.gallery-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 18px;
+	}
+
+	figure {
+		margin: 0;
+	}
+
+	figure :global(img) {
+		width: 100%;
+		aspect-ratio: 1;
+		object-fit: cover;
+		border-radius: var(--radius-md);
+		display: block;
+	}
+
+	figcaption {
+		margin-top: 10px;
+		font-weight: 700;
+		font-size: 0.9rem;
+		color: var(--color-text-muted);
+	}
+
+	@media (max-width: 760px) {
+		.gallery-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+</style>

@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+
 const ORDER_URL = 'https://frituurhethalfhuis.pickandgo.be/';
 const navItems = [
 	{ href: '#menu', label: 'Menu' },
@@ -11,10 +14,8 @@ const navItems = [
 <header class="header">
 	<div class="container bar">
 		<a href="#top" class="logo">
-			<span class="logo-mark">🍟</span>
-			<span class="logo-text">
-				Het <strong>Halfhuis</strong>
-			</span>
+			<Image src={logo} alt="Het Halfhuis" width={34} height={26} />
+			<span class="logo-text">Frituur Het Halfhuis</span>
 		</a>
 
 		<nav class="nav" aria-label="Hoofdnavigatie">
@@ -88,12 +89,8 @@ const navItems = [
 		color: var(--color-dark);
 	}
 
-	.logo-mark {
-		font-size: 1.6rem;
-	}
-
-	.logo-text strong {
-		color: var(--color-primary);
+	.logo :global(img) {
+		display: block;
 	}
 
 	.nav {

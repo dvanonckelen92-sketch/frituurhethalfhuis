@@ -1,34 +1,37 @@
 ---
+import { Image } from 'astro:assets';
+import shopPhoto from '../assets/photos/frituur-volledig.jpg';
+
 const ORDER_URL = 'https://frituurhethalfhuis.pickandgo.be/';
-const HERO_IMAGE =
-	'https://images.unsplash.com/photo-1688978181542-87a886a16fbe?auto=format&fit=crop&w=1600&q=80';
 ---
 
 <section class="hero" id="top">
-	<img class="hero-bg" src={HERO_IMAGE} alt="Krokante verse frietjes van Frituur Het Halfhuis" loading="eager" />
-	<div class="hero-overlay"></div>
+	<div class="container hero-grid">
+		<div class="hero-text">
+			<p class="kicker">Frituur &middot; Mielen-Boven-Aalst</p>
+			<h1>Frituur Het Halfhuis</h1>
+			<p class="lead">
+				Verse frieten, snacks en Bicky burgers aan de Borlostraat. Bestel op voorhand via de
+				webshop en haal af wanneer het jou past.
+			</p>
 
-	<div class="container hero-content">
-		<span class="eyebrow eyebrow-light">☆ Familiefrituur in Mielen-Boven-Aalst ☆</span>
-		<h1>
-			Verse frietjes,<br />
-			met liefde gebakken.
-		</h1>
-		<p class="lead">
-			Bij Frituur Het Halfhuis draait het om eerlijke frietjes, krokante snacks en Bicky
-			burgers &mdash; klaargemaakt terwijl je wacht en zo warm mogelijk meegegeven.
-		</p>
+			<div class="hero-actions">
+				<a class="btn btn-primary" href={ORDER_URL} target="_blank" rel="noopener">
+					Bestel online
+				</a>
+				<a class="btn btn-ghost" href="#menu">Bekijk het menu</a>
+			</div>
 
-		<div class="hero-actions">
-			<a class="btn btn-primary" href={ORDER_URL} target="_blank" rel="noopener">
-				🛵 Bestel &amp; haal af
-			</a>
-			<a class="btn btn-ghost" href="#menu">Bekijk het menu</a>
+			<p class="hero-status" id="hero-status">
+				<span class="dot" id="status-dot"></span>
+				<span id="status-text">Openingsuren laden…</span>
+			</p>
+
+			<p class="hero-note">100% aanbevolen op Facebook (8 beoordelingen) &middot; afhalen langs de linkse deur</p>
 		</div>
 
-		<div class="hero-status" id="hero-status">
-			<span class="dot" id="status-dot"></span>
-			<span id="status-text">Openingsuren laden…</span>
+		<div class="hero-image">
+			<Image src={shopPhoto} alt="De toog van Frituur Het Halfhuis" width={640} height={480} />
 		</div>
 	</div>
 </section>
@@ -99,95 +102,90 @@ const HERO_IMAGE =
 
 <style>
 	.hero {
-		position: relative;
-		padding-top: 120px;
-		padding-bottom: 120px;
-		overflow: hidden;
+		padding: 56px 0 72px;
 	}
 
-	.hero-bg {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
+	.hero-grid {
+		display: grid;
+		grid-template-columns: 1.1fr 1fr;
+		gap: 56px;
+		align-items: center;
 	}
 
-	.hero-overlay {
-		position: absolute;
-		inset: 0;
-		background: linear-gradient(
-			120deg,
-			rgba(20, 12, 6, 0.86) 0%,
-			rgba(20, 12, 6, 0.72) 45%,
-			rgba(226, 83, 31, 0.55) 100%
-		);
-	}
-
-	.hero-content {
-		position: relative;
-		max-width: 640px;
-		color: #fff;
-	}
-
-	.eyebrow-light {
-		background: rgba(255, 255, 255, 0.16);
-		color: #ffe3c2;
+	.kicker {
+		font-weight: 700;
+		font-size: 0.9rem;
+		color: var(--color-text-muted);
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		margin: 0 0 12px;
 	}
 
 	.hero h1 {
-		color: #fff;
-		font-size: clamp(2.4rem, 5vw, 3.6rem);
-		margin: 20px 0 18px;
+		font-size: clamp(2.2rem, 4vw, 3rem);
+		margin: 0 0 16px;
 	}
 
 	.lead {
-		font-size: 1.15rem;
-		color: rgba(255, 255, 255, 0.88);
-		max-width: 520px;
+		font-size: 1.08rem;
+		color: var(--color-text-muted);
+		max-width: 480px;
 	}
 
 	.hero-actions {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 14px;
-		margin-top: 32px;
+		margin-top: 28px;
 	}
 
 	.hero-status {
-		display: inline-flex;
+		display: flex;
 		align-items: center;
-		gap: 10px;
-		margin-top: 28px;
-		padding: 10px 18px;
-		background: rgba(255, 255, 255, 0.12);
-		border: 1px solid rgba(255, 255, 255, 0.25);
-		border-radius: 999px;
+		gap: 9px;
+		margin: 22px 0 0;
 		font-weight: 700;
-		font-size: 0.92rem;
+		font-size: 0.95rem;
 	}
 
 	.dot {
-		width: 10px;
-		height: 10px;
+		width: 9px;
+		height: 9px;
 		border-radius: 50%;
 		background: #999;
+		flex-shrink: 0;
 	}
 
 	.dot.open {
-		background: #4ade80;
-		box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.25);
+		background: #3aa15c;
 	}
 
 	.dot.closed {
-		background: #f87171;
-		box-shadow: 0 0 0 4px rgba(248, 113, 113, 0.2);
+		background: #c14a4a;
 	}
 
-	@media (max-width: 640px) {
-		.hero {
-			padding-top: 96px;
-			padding-bottom: 80px;
+	.hero-note {
+		margin-top: 10px;
+		color: var(--color-text-muted);
+		font-size: 0.9rem;
+	}
+
+	.hero-image :global(img) {
+		width: 100%;
+		height: auto;
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-soft);
+		object-fit: cover;
+		aspect-ratio: 4 / 3;
+	}
+
+	@media (max-width: 860px) {
+		.hero-grid {
+			grid-template-columns: 1fr;
+			gap: 32px;
+		}
+		.hero-image {
+			order: -1;
 		}
 	}
 </style>

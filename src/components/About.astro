@@ -1,37 +1,32 @@
 ---
-const ABOUT_IMAGE =
-	'https://images.unsplash.com/photo-1619158411623-f6e5b94bef0e?auto=format&fit=crop&w=1200&q=80';
+import { Image } from 'astro:assets';
+import ownerPhoto from '../assets/photos/eigenares.jpg';
 ---
 
 <section class="section" id="over-ons">
 	<div class="container about-grid">
 		<div class="about-image">
-			<img src={ABOUT_IMAGE} alt="Verse frietjes worden gebakken in de frituurketel" loading="lazy" />
-			<div class="badge">
-				<strong>8/8</strong>
-				<span>aanbevelingen</span>
-			</div>
+			<Image src={ownerPhoto} alt="De eigenares van Frituur Het Halfhuis bij de frietbakken" width={560} height={720} />
 		</div>
 
 		<div class="about-text">
 			<span class="eyebrow">Over ons</span>
-			<h2>Een frietje bakken doe je met liefde</h2>
+			<h2>Over de frituur</h2>
 			<p>
-				Frituur Het Halfhuis is dé buurtfrituur van Mielen-Boven-Aalst. Bij ons vind je alles
-				wat een goede frituur moet hebben: krokante frietjes, een uitgebreide snackkaart,
-				stevige Bicky burgers en huisbereid stoofvlees. Alles wordt vers klaargemaakt, precies
-				op het moment dat jij het komt afhalen.
+				Frituur Het Halfhuis zit aan de Borlostraat in Mielen-Boven-Aalst. Op de kaart staan
+				frieten, snacks, Bicky burgers en huisgemaakt stoofvlees, allemaal klaargemaakt op het
+				moment dat je bestelt.
 			</p>
 			<p>
-				Bestel gemakkelijk online, kies je afhaalmoment en spring binnen langs de linkse deur
-				&mdash; zo geniet je thuis van je frietjes op hun allerbest: mooi warm en krokant.
+				Bestel op voorhand via de webshop en kies je afhaalmoment, of spring gewoon binnen
+				langs de linkse deur.
 			</p>
 
 			<ul class="about-list">
-				<li>🍟 Dagelijks verse frieten &amp; snacks</li>
-				<li>🥩 Huisgemaakte stoofvleessaus en stoofvlees</li>
-				<li>📱 Vooraf online bestellen via de webshop</li>
-				<li>📍 Borlostraat 15, 3891 Mielen-Boven-Aalst</li>
+				<li>Frieten, snacks en Bicky burgers</li>
+				<li>Huisgemaakt stoofvlees en stoofvleessaus</li>
+				<li>Online bestellen en afhalen op een tijdslot naar keuze</li>
+				<li>Borlostraat 15, 3891 Mielen-Boven-Aalst</li>
 			</ul>
 		</div>
 	</div>
@@ -40,48 +35,22 @@ const ABOUT_IMAGE =
 <style>
 	.about-grid {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 64px;
+		grid-template-columns: minmax(0, 340px) 1fr;
+		gap: 56px;
 		align-items: center;
 	}
 
-	.about-image {
-		position: relative;
-	}
-
-	.about-image img {
+	.about-image :global(img) {
+		width: 100%;
+		height: auto;
 		border-radius: var(--radius-lg);
 		box-shadow: var(--shadow-soft);
-		aspect-ratio: 4 / 3.2;
 		object-fit: cover;
-	}
-
-	.badge {
-		position: absolute;
-		bottom: -22px;
-		right: -22px;
-		background: var(--color-primary);
-		color: #fff;
-		border-radius: 18px;
-		padding: 16px 20px;
-		text-align: center;
-		box-shadow: 0 12px 24px rgba(226, 83, 31, 0.4);
-	}
-
-	.badge strong {
-		display: block;
-		font-family: 'Fredoka', system-ui, sans-serif;
-		font-size: 1.4rem;
-	}
-
-	.badge span {
-		font-size: 0.78rem;
-		font-weight: 700;
-		opacity: 0.9;
+		aspect-ratio: 4 / 5;
 	}
 
 	.about-text h2 {
-		font-size: clamp(1.8rem, 3vw, 2.4rem);
+		font-size: clamp(1.7rem, 3vw, 2.2rem);
 		margin: 14px 0 18px;
 	}
 
@@ -93,27 +62,25 @@ const ABOUT_IMAGE =
 	.about-list {
 		list-style: none;
 		padding: 0;
-		margin: 24px 0 0;
+		margin: 22px 0 0;
 		display: grid;
-		gap: 12px;
+		gap: 10px;
 	}
 
 	.about-list li {
-		font-weight: 700;
-		background: var(--color-bg-alt);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius-md);
-		padding: 12px 16px;
+		font-weight: 600;
 		font-size: 0.95rem;
+		padding: 10px 0;
+		border-bottom: 1px solid var(--color-border);
 	}
 
 	@media (max-width: 860px) {
 		.about-grid {
 			grid-template-columns: 1fr;
-			gap: 40px;
+			gap: 32px;
 		}
-		.badge {
-			right: 12px;
+		.about-image {
+			max-width: 320px;
 		}
 	}
 </style>

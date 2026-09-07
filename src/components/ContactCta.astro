@@ -1,94 +1,104 @@
 ---
+import { Image } from 'astro:assets';
+import ingang from '../assets/photos/ingang.jpg';
+
 const ORDER_URL = 'https://frituurhethalfhuis.pickandgo.be/';
 const FB_URL = 'https://www.facebook.com/profile.php?id=61583588097751';
 const EMAIL = 'frituurhethalfhuis@gmail.com';
-const CTA_IMAGE =
-	'https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=1400&q=80';
 ---
 
-<section class="cta" id="contact">
-	<div class="cta-bg" style={`background-image:url(${CTA_IMAGE})`}></div>
-	<div class="cta-overlay"></div>
-
-	<div class="container cta-content">
-		<h2>Trek er zin in? Bestel je frietjes vandaag nog.</h2>
-		<p>Kies je tijdslot, bestel online en spring binnen langs de linkse deur op Borlostraat 15.</p>
-
-		<div class="cta-actions">
-			<a class="btn btn-primary" href={ORDER_URL} target="_blank" rel="noopener">
-				🛵 Bestel &amp; haal af
-			</a>
-			<a class="btn btn-ghost" href={FB_URL} target="_blank" rel="noopener">
-				📘 Volg ons op Facebook
-			</a>
+<section class="section cta-section" id="contact">
+	<div class="container cta-grid">
+		<div class="cta-image">
+			<Image src={ingang} alt="Ingang van Frituur Het Halfhuis" width={560} height={420} />
 		</div>
 
-		<div class="cta-contact">
-			<a href={`mailto:${EMAIL}`}>✉️ {EMAIL}</a>
-			<span>📍 Borlostraat 15, 3891 Mielen-Boven-Aalst</span>
+		<div class="cta-text">
+			<span class="eyebrow">Contact</span>
+			<h2>Langsgaan of bestellen</h2>
+			<p>
+				Kies je tijdslot in de webshop en haal je bestelling af langs de linkse deur op
+				Borlostraat 15.
+			</p>
+
+			<div class="cta-actions">
+				<a class="btn btn-primary" href={ORDER_URL} target="_blank" rel="noopener">
+					Bestel online
+				</a>
+				<a class="btn btn-ghost" href={FB_URL} target="_blank" rel="noopener">
+					Facebook
+				</a>
+			</div>
+
+			<div class="cta-contact">
+				<a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+				<span>Borlostraat 15, 3891 Mielen-Boven-Aalst</span>
+			</div>
 		</div>
 	</div>
 </section>
 
 <style>
-	.cta {
-		position: relative;
-		padding: 100px 0;
-		overflow: hidden;
+	.cta-section {
+		background: var(--color-bg-alt);
+		border-top: 1px solid var(--color-border);
 	}
 
-	.cta-bg {
-		position: absolute;
-		inset: 0;
-		background-size: cover;
-		background-position: center;
+	.cta-grid {
+		display: grid;
+		grid-template-columns: 0.9fr 1.1fr;
+		gap: 56px;
+		align-items: center;
 	}
 
-	.cta-overlay {
-		position: absolute;
-		inset: 0;
-		background: linear-gradient(180deg, rgba(20, 12, 6, 0.85), rgba(20, 12, 6, 0.9));
+	.cta-image :global(img) {
+		width: 100%;
+		height: auto;
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-soft);
+		object-fit: cover;
+		aspect-ratio: 4 / 3;
 	}
 
-	.cta-content {
-		position: relative;
-		text-align: center;
-		max-width: 680px;
-		margin: 0 auto;
-		color: #fff;
+	.cta-text h2 {
+		font-size: clamp(1.7rem, 3vw, 2.2rem);
+		margin: 14px 0 16px;
 	}
 
-	.cta-content h2 {
-		color: #fff;
-		font-size: clamp(1.8rem, 3.4vw, 2.5rem);
-	}
-
-	.cta-content p {
-		margin-top: 16px;
-		color: rgba(255, 255, 255, 0.85);
-		font-size: 1.05rem;
+	.cta-text p {
+		color: var(--color-text-muted);
+		max-width: 440px;
 	}
 
 	.cta-actions {
 		display: flex;
-		justify-content: center;
 		flex-wrap: wrap;
 		gap: 14px;
-		margin-top: 32px;
+		margin-top: 28px;
 	}
 
 	.cta-contact {
-		margin-top: 36px;
+		margin-top: 26px;
 		display: flex;
-		justify-content: center;
-		flex-wrap: wrap;
-		gap: 24px;
+		flex-direction: column;
+		gap: 6px;
 		font-weight: 700;
 		font-size: 0.95rem;
-		color: rgba(255, 255, 255, 0.85);
+		color: var(--color-text-muted);
 	}
 
 	.cta-contact a:hover {
-		color: var(--color-accent);
+		color: var(--color-primary-dark);
+	}
+
+	@media (max-width: 860px) {
+		.cta-grid {
+			grid-template-columns: 1fr;
+			gap: 32px;
+		}
+		.cta-image {
+			order: -1;
+			max-width: 420px;
+		}
 	}
 </style>
