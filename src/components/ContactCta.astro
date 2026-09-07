@@ -1,10 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import ingang from '../assets/photos/ingang.jpg';
-
-const ORDER_URL = 'https://frituurhethalfhuis.pickandgo.be/';
-const FB_URL = 'https://www.facebook.com/profile.php?id=61583588097751';
-const EMAIL = 'frituurhethalfhuis@gmail.com';
+import { ORDER_URL, FACEBOOK_URL as FB_URL, EMAIL, FULL_ADDRESS } from '../data/site';
 ---
 
 <section class="section cta-section" id="contact">
@@ -17,8 +14,8 @@ const EMAIL = 'frituurhethalfhuis@gmail.com';
 			<span class="eyebrow">Contact</span>
 			<h2>Langsgaan of bestellen</h2>
 			<p>
-				Kies je tijdslot in de webshop en haal je bestelling af langs de linkse deur op
-				Borlostraat 15.
+				Kies je tijdslot in de webshop en haal je bestelling af aan Borlostraat 15 in
+				Mielen-Boven-Aalst (Gingelom).
 			</p>
 
 			<div class="cta-actions">
@@ -32,7 +29,7 @@ const EMAIL = 'frituurhethalfhuis@gmail.com';
 
 			<div class="cta-contact">
 				<a href={`mailto:${EMAIL}`}>{EMAIL}</a>
-				<span>Borlostraat 15, 3891 Mielen-Boven-Aalst</span>
+				<span>{FULL_ADDRESS}</span>
 			</div>
 		</div>
 	</div>

@@ -1,10 +1,12 @@
 ---
+import { SITE_NAME, FULL_ADDRESS } from '../data/site';
+
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="footer">
 	<div class="container footer-inner">
-		<p>&copy; {currentYear} Frituur Het Halfhuis &middot; Borlostraat 15, Mielen-Boven-Aalst</p>
+		<p>&copy; {currentYear} {SITE_NAME} &middot; {FULL_ADDRESS}</p>
 		<p class="credit">
 			Website door&nbsp;<a href="https://www.coopconsult.be" target="_blank" rel="noopener">Coop Consult</a>
 		</p>

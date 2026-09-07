@@ -1,23 +1,93 @@
 ---
+import { getImage } from 'astro:assets';
+import ogSource from '../assets/photos/frituur-volledig.jpg';
+import { openingHours } from '../data/menu';
+import { SITE_NAME, SITE_URL, ORDER_URL, FACEBOOK_URL, ADDRESS, FULL_ADDRESS } from '../data/site';
+
 interface Props {
 	title?: string;
 	description?: string;
 }
 
 const {
-	title = 'Frituur Het Halfhuis | Mielen-Boven-Aalst',
-	description = 'Frituur Het Halfhuis in Mielen-Boven-Aalst: verse frietjes, snacks en Bicky burgers. Bestel online voor afhaling via Borlostraat 15.',
+	title = 'Frituur Het Halfhuis | Frituur in Mielen-Boven-Aalst, Gingelom',
+	description = `Frituur Het Halfhuis: verse frieten, snacks en Bicky burgers in Mielen-Boven-Aalst (Gingelom). Bestel online en haal af aan ${FULL_ADDRESS}.`,
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, SITE_URL);
+const ogImage = await getImage({ src: ogSource, width: 1200, height: 630 });
+const ogImageURL = new URL(ogImage.src, SITE_URL);
+
+const dayMap: Record<string, string> = {
+	Maandag: 'Monday',
+	Dinsdag: 'Tuesday',
+	Woensdag: 'Wednesday',
+	Donderdag: 'Thursday',
+	Vrijdag: 'Friday',
+	Zaterdag: 'Saturday',
+	Zondag: 'Sunday',
+};
+
+const openingHoursSpecification = openingHours
+	.filter((d) => !d.closed)
+	.flatMap((d) =>
+		d.hours.map((range) => {
+			const [opens, closes] = range.split(' - ');
+			return {
+				'@type': 'OpeningHoursSpecification',
+				dayOfWeek: `https://schema.org/${dayMap[d.day]}`,
+				opens,
+				closes,
+			};
+		})
+	);
+
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'FastFoodRestaurant',
+	name: SITE_NAME,
+	image: ogImageURL.toString(),
+	url: SITE_URL,
+	menu: ORDER_URL,
+	priceRange: '€',
+	servesCuisine: 'Belgische frituur',
+	address: {
+		'@type': 'PostalAddress',
+		streetAddress: ADDRESS.street,
+		postalCode: ADDRESS.postalCode,
+		addressLocality: ADDRESS.locality,
+		addressRegion: ADDRESS.region,
+		addressCountry: ADDRESS.country,
+	},
+	areaServed: 'Gingelom',
+	openingHoursSpecification,
+	sameAs: [FACEBOOK_URL, ORDER_URL],
+};
 ---
 
 <!doctype html>
-<html lang="nl">
+<html lang="nl-BE">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={SITE_NAME} />
+		<meta property="og:locale" content="nl_BE" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:image" content={ogImageURL} />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageURL} />
+
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -25,6 +95,8 @@ const {
 			rel="stylesheet"
 		/>
 		<title>{title}</title>
+
+		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 	</head>
 	<body>
 		<slot />

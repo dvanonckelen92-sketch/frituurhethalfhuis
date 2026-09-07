@@ -1,9 +1,10 @@
 ---
 import { openingHours } from '../data/menu';
+import { FULL_ADDRESS, FACEBOOK_URL } from '../data/site';
 
-const ADDRESS = 'Borlostraat 15, 3891 Mielen-Boven-Aalst, België';
-const MAPS_EMBED = `https://www.google.com/maps?q=${encodeURIComponent(ADDRESS)}&output=embed`;
-const MAPS_LINK = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
+const MAPS_QUERY = `${FULL_ADDRESS}, België`;
+const MAPS_EMBED = `https://www.google.com/maps?q=${encodeURIComponent(MAPS_QUERY)}&output=embed`;
+const MAPS_LINK = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(MAPS_QUERY)}`;
 
 const dayIndex: Record<string, number> = {
 	Zondag: 0,
@@ -38,9 +39,10 @@ const dayIndex: Record<string, number> = {
 			</ul>
 
 			<p class="note">
-				Feestdagen en uitzonderlijke sluitingsdagen kondigen we aan op onze
-				<a href="https://www.facebook.com/profile.php?id=61583588097751" target="_blank" rel="noopener">
-					Facebookpagina</a>.
+				Feestdagen en uitzonderlijke sluitingsdagen kondigen we aan op onze&nbsp;<a
+					href={FACEBOOK_URL}
+					target="_blank"
+					rel="noopener">Facebookpagina</a>.
 			</p>
 		</div>
 
